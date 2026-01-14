@@ -1,0 +1,97 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# Data files (raw videos are large, don't commit)
+data/raw/**
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Keep directory structure
+!data/raw/.gitkeep
+!data/raw/ur_fall/.gitkeep
+!data/raw/le2i/.gitkeep
+
+# Processed data (can be regenerated)
+data/processed/**
+!data/processed/.gitkeep
+
+# Model checkpoints (large files)
+results/checkpoints/**
+!results/checkpoints/.gitkeep
+
+# Logs
+results/logs/**
+!results/logs/.gitkeep
+
+# Figures (can be regenerated)
+results/figures/**
+!results/figures/.gitkeep
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Weights & Biases
+wandb/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~

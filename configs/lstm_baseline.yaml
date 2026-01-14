@@ -1,0 +1,83 @@
+# LSTM baseline configuration for fall detection
+
+# Data settings
+data:
+  data_path: "data/processed"
+  sequence_length: 60
+  num_keypoints: 17
+  pose_format: "coco"
+  batch_size: 32
+  num_workers: 4
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+
+# Model settings - LSTM specific
+model:
+  type: "lstm"
+  input_dim: 34  # 17 keypoints × 2 (x, y)
+  hidden_dim: 128
+  num_layers: 2
+  dropout: 0.3
+  bidirectional: true
+  pooling: "attention"  # "attention", "last", "avg"
+  classifier_hidden: 64
+  classifier_dropout: 0.5
+
+# Training settings
+training:
+  num_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adam"
+  scheduler: "reduce_on_plateau"
+  scheduler_patience: 10
+  scheduler_factor: 0.5
+  early_stopping_patience: 15
+  gradient_clip: 1.0
+
+# Loss settings
+loss:
+  type: "weighted_bce"
+  pos_weight: 2.0  # Adjust based on class imbalance
+
+# Augmentation settings
+augmentation:
+  enabled: true
+  temporal_jitter: 0.1
+  speed_variation: [0.8, 1.2]
+  horizontal_flip_prob: 0.5
+  noise_std: 0.01
+  keypoint_dropout_prob: 0.1
+  temporal_crop_prob: 0.3
+
+# Preprocessing settings
+preprocessing:
+  normalize: true
+  normalization_method: "torso_height"
+  add_velocities: false
+  add_accelerations: false
+
+# Paths
+paths:
+  checkpoint_dir: "results/checkpoints/lstm_baseline"
+  log_dir: "results/logs/lstm_baseline"
+  figure_dir: "results/figures/lstm_baseline"
+
+# Device settings
+device: "cuda"
+seed: 42
+
+# Evaluation settings
+evaluation:
+  threshold: 0.5
+  save_predictions: true
+  save_confusion_matrix: true
+
+# Target metrics (from project plan)
+target_metrics:
+  recall: 0.90  # Critical - don't miss falls
+  precision: 0.85
+  f1_score: 0.85
+  auc_roc: 0.90
+  specificity: 0.85

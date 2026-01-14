@@ -1,0 +1,84 @@
+# Transformer configuration for fall detection
+
+# Data settings
+data:
+  data_path: "data/processed"
+  sequence_length: 60
+  num_keypoints: 17
+  pose_format: "coco"
+  batch_size: 32
+  num_workers: 4
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+
+# Model settings - Transformer specific
+model:
+  type: "transformer"
+  input_dim: 34  # 17 keypoints × 2 (x, y)
+  embed_dim: 128
+  num_heads: 4
+  num_layers: 2
+  ffn_dim: 256
+  dropout: 0.1
+  positional_encoding: "sinusoidal"  # "sinusoidal" or "learnable"
+  use_cls_token: true
+
+# Training settings
+training:
+  num_epochs: 100
+  learning_rate: 0.0001  # Lower LR for transformer
+  weight_decay: 0.0001
+  optimizer: "adamw"  # AdamW recommended for transformers
+  scheduler: "cosine"  # Cosine annealing
+  warmup_epochs: 10
+  early_stopping_patience: 15
+  gradient_clip: 1.0
+
+# Loss settings
+loss:
+  type: "focal"  # Focal loss often works well with transformers
+  alpha: 0.25
+  gamma: 2.0
+
+# Augmentation settings
+augmentation:
+  enabled: true
+  temporal_jitter: 0.15  # Slightly more aggressive
+  speed_variation: [0.8, 1.2]
+  horizontal_flip_prob: 0.5
+  noise_std: 0.015
+  keypoint_dropout_prob: 0.15
+  temporal_crop_prob: 0.4
+
+# Preprocessing settings
+preprocessing:
+  normalize: true
+  normalization_method: "torso_height"
+  add_velocities: true  # Transformers can benefit from velocity features
+  add_accelerations: false
+
+# Paths
+paths:
+  checkpoint_dir: "results/checkpoints/transformer"
+  log_dir: "results/logs/transformer"
+  figure_dir: "results/figures/transformer"
+
+# Device settings
+device: "cuda"
+seed: 42
+
+# Evaluation settings
+evaluation:
+  threshold: 0.5
+  save_predictions: true
+  save_confusion_matrix: true
+  save_attention_maps: true  # Transformer-specific
+
+# Target metrics (from project plan)
+target_metrics:
+  recall: 0.90  # Critical - don't miss falls
+  precision: 0.85
+  f1_score: 0.85
+  auc_roc: 0.90
+  specificity: 0.85
