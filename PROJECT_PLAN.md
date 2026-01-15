@@ -143,7 +143,7 @@ Pose estimation offers several advantages for this problem:
 | **Visualization** | TensorBoard or W&B | - | Experiment tracking |
 | **Demo** | Gradio | 4.0+ | Fast and simple UI |
 | **Code versioning** | Git + GitHub | - | Collaboration |
-| **Data versioning** | DVC (optional) | - | Reproducibility |
+| **Data storage** | Google Drive | - | Dataset and model storage for Colab |
 
 ### 4.2 Python Dependencies
 

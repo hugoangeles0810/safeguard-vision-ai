@@ -44,10 +44,24 @@ Video Input → Pose Extraction → Keypoint Sequence → Temporal Classificatio
 ### Prerequisites
 
 - Python 3.10+
-- CUDA-compatible GPU (recommended for training)
+- Google Colab account (recommended for training with GPU)
+- Google Drive account (for dataset and model storage)
 - Git
 
 ### Setup
+
+#### Option 1: Google Colab (Recommended)
+
+1. Open any notebook in the `notebooks/` directory in Google Colab
+2. The notebook will automatically:
+   - Mount your Google Drive
+   - Clone the repository
+   - Install dependencies
+   - Setup project paths
+
+3. Upload your datasets to: `Google Drive/MyDrive/safeguard-vision-ai/data/raw/`
+
+#### Option 2: Local Setup
 
 1. Clone the repository:
 ```bash
@@ -163,10 +177,17 @@ training:
 
 ## Development Notebooks
 
+All notebooks are designed to work seamlessly in Google Colab with automatic Google Drive integration:
+
 1. `01_eda.ipynb`: Exploratory data analysis
-2. `02_pose_extraction.ipynb`: Pose extraction comparison
-3. `03_model_experiments.ipynb`: Model training and comparison
+2. `02_pose_extraction.ipynb`: Pose extraction comparison (MediaPipe vs YOLOv8)
+3. `03_model_experiments.ipynb`: Model training and comparison with GPU
 4. `04_error_analysis.ipynb`: Error analysis and improvements
+
+**To use in Colab:**
+1. Upload notebooks to Google Colab
+2. Run the first cells to mount Drive and setup environment
+3. Notebooks will automatically access data from your Google Drive
 
 ## Project Timeline
 

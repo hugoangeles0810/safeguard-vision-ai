@@ -17,15 +17,16 @@ This is a **Fall Detection System** using Computer Vision and Pose Estimation. T
 - **Video Processing:** OpenCV, imageio
 - **Experiment Tracking:** TensorBoard or Weights & Biases
 - **Training Environment:** Google Colab Pro (GPU)
+- **Data Storage:** Google Drive (integrated with Colab)
 
 ## Repository Structure
 
 ```
 ├── data/
-│   ├── raw/              # Original videos (not committed)
+│   ├── raw/              # Original videos (stored in Google Drive for Colab)
 │   │   ├── ur_fall/
 │   │   └── le2i/
-│   ├── processed/        # Extracted keypoints
+│   ├── processed/        # Extracted keypoints (synced with Drive)
 │   │   ├── keypoints/
 │   │   └── metadata.csv
 │   └── splits/           # Train/val/test splits
@@ -34,12 +35,13 @@ This is a **Fall Detection System** using Computer Vision and Pose Estimation. T
 │   ├── models/           # LSTM and Transformer architectures
 │   ├── training/         # Training loop, losses, metrics
 │   ├── inference/        # Prediction and real-time inference
-│   └── pose/             # MediaPipe and YOLOv8 extractors
-├── notebooks/            # EDA, experiments, error analysis
+│   ├── pose/             # MediaPipe and YOLOv8 extractors
+│   └── utils/            # Google Drive integration utilities
+├── notebooks/            # EDA, experiments, error analysis (Colab-ready)
 ├── configs/              # YAML configuration files
 ├── demo/                 # Gradio demo application
 ├── results/
-│   ├── checkpoints/      # Saved models
+│   ├── checkpoints/      # Saved models (backed up to Drive)
 │   ├── logs/             # TensorBoard logs
 │   └── figures/          # Visualizations
 └── docs/                 # Research and technical documentation
@@ -96,7 +98,31 @@ This is a **Fall Detection System** using Computer Vision and Pose Estimation. T
 
 ## Development Commands
 
-This project is in early stages. Once implementation begins, typical commands will include:
+### Google Colab Workflow (Recommended)
+
+All Jupyter notebooks in `notebooks/` are designed for Google Colab:
+
+```python
+# Notebooks automatically handle:
+# 1. Google Drive mounting
+# 2. Repository cloning
+# 3. Dependency installation
+# 4. Path setup
+
+# Using Drive utilities in notebooks or scripts:
+from src.utils.drive_utils import mount_drive, setup_paths, save_checkpoint
+
+# Mount Drive and setup paths
+drive_root = mount_drive()
+paths = setup_paths(project_name='safeguard-vision-ai')
+
+# Access data
+raw_data = paths['data_raw']
+processed_data = paths['data_processed']
+checkpoints = paths['checkpoints']
+```
+
+### Local Development Commands
 
 ```bash
 # Environment setup
@@ -148,3 +174,5 @@ This is a 3-week intensive project (~120 hours total, 4-person team):
 - **Week 3:** Optimization, demo, presentation
 
 Currently the project appears to be at the initialization stage with project planning complete.
+- Every documentation (including code comments) has to be in English
+- Every doc file (as .md por example) has to be in snake uppercased
