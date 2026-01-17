@@ -7,7 +7,16 @@
       "Bash(git push:*)",
       "Bash(cat:*)",
       "Bash(python -m json.tool:*)",
-      "WebFetch(domain:fenix.ur.edu.pl)"
+      "WebFetch(domain:fenix.ur.edu.pl)",
+      "Bash(python -m pytest:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(curl:*)",
+      "Bash(sh)",
+      "Bash(~/.local/bin/uv --version)",
+      "Bash(~/.local/bin/uv venv:*)",
+      "Bash(source .venv/bin/activate)",
+      "Bash(~/.local/bin/uv pip install:*)"
     ],
     "deny": [],
     "ask": []

@@ -174,5 +174,9 @@ This is a 3-week intensive project (~120 hours total, 4-person team):
 - **Week 3:** Optimization, demo, presentation
 
 Currently the project appears to be at the initialization stage with project planning complete.
-- Every documentation (including code comments) has to be in English
-- Every doc file (as .md por example) has to be in snake uppercased
+
+## Development Guidelines
+
+- Every documentation (including code comments) must be in English
+- Every documentation file (e.g., .md files) must be in SCREAMING_SNAKE_CASE
+- Whenever you modify a file in @src/, ensure you update its corresponding unit tests in @tests/ if they exist
